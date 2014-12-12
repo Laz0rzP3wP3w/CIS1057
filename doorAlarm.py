@@ -20,6 +20,7 @@ def send_email(TOADDR, LOGIN, PASSWORD, FROMADDR, msg):
     smtpObj.login(LOGIN, PASSWORD)
     smtpObj.sendmail(FROMADDR, TOADDR, msg)
     smtpObj.quit()
+    print "--Email sent--"
 
 		
 def isOpen(channel):
