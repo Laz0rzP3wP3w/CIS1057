@@ -6,10 +6,10 @@ GPIO.setmode(GPIO.BOARD)
 channel = 26 #whatever pin we use
 GPIO.setup(channel, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
-TOADDR = "2675495302@messaging.sprintpcs.com" # fill in to address (gmail only)
-FROMADDR = "iamyourdeaddad@gmail.com" #fill in from address
+TOADDR = "" # fill in to address (gmail only)
+FROMADDR = "" #fill in from address
 LOGIN = FROMADDR
-PASSWORD = "ROCKBAND" #fill in password
+PASSWORD = "" #fill in password
 msg = "Door has been opened."
 
 def send_email(TOADDR, LOGIN, PASSWORD, FROMADDR, msg):
