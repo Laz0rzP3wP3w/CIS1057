@@ -1,5 +1,6 @@
 import RPi.GPIO as GPIO
 import smtplib
+import time
 
 GPIO.setmode(GPIO.BOARD)
 channel = 26 #whatever pin we use
@@ -30,22 +31,21 @@ def isOpen(channel):
 
 initial_run = 0
 count = 0
-sentEmailCount = 0		
+
 while True:
     value = isOpen(channel)
     if value:
-	initial_run=1
+	    initial_run=1
         if (initial_run == 1): #switch is now closed.
             count += 1
             if count > 10:
-     		if sentEmailCount == 0:
-                    send_email(TOADDR, LOGIN, PASSWORD, FROMADDR, msg)
-                    sentEmailCount = 1
-                    count = 0
-                    initial_run = 0
+				send_email(TOADDR, LOGIN, PASSWORD, FROMADDR, msg)
+				count = 0
+				initial_run = 0
+				time.sleep(10)
+
     
 GPIO.cleanup()            	
 #value = 0 after it sends email, reset value to 0 so it stops sending emails until closed again?
    # else:
     #    print "All clear"
-
