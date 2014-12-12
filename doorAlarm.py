@@ -6,10 +6,10 @@ GPIO.setmode(GPIO.BOARD)
 channel = 26 #whatever pin we use
 GPIO.setup(channel, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
-TOADDR = "" # fill in to address
-FROMADDR = "" #fill in from address
+TOADDR = "2675495302@messaging.sprintpcs.com" # fill in to address (gmail only)
+FROMADDR = "iamyourdeaddad@gmail.com" #fill in from address
 LOGIN = FROMADDR
-PASSWORD = "" #fill in password
+PASSWORD = "ROCKBAND" #fill in password
 msg = "Door has been opened."
 
 def send_email(TOADDR, LOGIN, PASSWORD, FROMADDR, msg):
@@ -20,7 +20,6 @@ def send_email(TOADDR, LOGIN, PASSWORD, FROMADDR, msg):
     smtpObj.login(LOGIN, PASSWORD)
     smtpObj.sendmail(FROMADDR, TOADDR, msg)
     smtpObj.quit()
-    print('Email Sent')
 
 		
 def isOpen(channel):
@@ -31,21 +30,21 @@ def isOpen(channel):
 
 initial_run = 0
 count = 0
+print "...Checking for open door..."
 
 while True:
     value = isOpen(channel)
     if value:
-	    initial_run=1
-        if (initial_run == 1): #switch is now closed.
+	initial_run=1
+        if (initial_run == 1):
             count += 1
             if count > 10:
-				send_email(TOADDR, LOGIN, PASSWORD, FROMADDR, msg)
-				count = 0
-				initial_run = 0
-				time.sleep(10)
+                send_email(TOADDR, LOGIN, PASSWORD, FROMADDR, msg)
+                count = 0
+                initial_run = 0
+                print "10 seconds until next check"
+                time.sleep(10)
+                print "...Checking for open door..."
 
     
-GPIO.cleanup()            	
-#value = 0 after it sends email, reset value to 0 so it stops sending emails until closed again?
-   # else:
-    #    print "All clear"
+GPIO.cleanup()
