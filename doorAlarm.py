@@ -14,7 +14,6 @@ msg = "Door has been opened."
 
 def send_email(TOADDR, LOGIN, PASSWORD, FROMADDR, msg):
     smtpObj = smtplib.SMTP('smtp.gmail.com', 587)
-    smtpObj.set_debuglevel(1)
     smtpObj.ehlo()
     smtpObj.starttls()
     smtpObj.login(LOGIN, PASSWORD)
