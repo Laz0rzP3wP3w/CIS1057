@@ -14,6 +14,7 @@ msg = "Door has been opened."
 
 def send_email(TOADDR, LOGIN, PASSWORD, FROMADDR, msg):
     smtpObj = smtplib.SMTP('smtp.gmail.com', 587)
+    #got rid of the debug. It was printing all that stuff.
     smtpObj.ehlo()
     smtpObj.starttls()
     smtpObj.login(LOGIN, PASSWORD)
