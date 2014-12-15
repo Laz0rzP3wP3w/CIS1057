@@ -7,9 +7,9 @@ GPIO.setmode(GPIO.BOARD)
 channel = 26 #whatever pin we use
 GPIO.setup(channel, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
-TOADDR = raw_input("What is your Gmail? ")
+TOADDR = "@messaging.sprintpcs.com"
 PASSWORD = getpass.getpass()
-FROMADDR = raw_input("What email would you like to send the alert to? ")
+FROMADDR = "@gmail.com"
 LOGIN = FROMADDR
 msg = "Door has been opened."
 
