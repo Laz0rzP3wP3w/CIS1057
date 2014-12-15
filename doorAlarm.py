@@ -1,20 +1,20 @@
 import RPi.GPIO as GPIO
 import smtplib
 import time
+import getpass
 
 GPIO.setmode(GPIO.BOARD)
 channel = 26 #whatever pin we use
 GPIO.setup(channel, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
-TOADDR = "" # fill in to address (gmail only)
-FROMADDR = "" #fill in from address
+TOADDR = raw_input("What is your Gmail? ")
+PASSWORD = getpass.getpass()
+FROMADDR = raw_input("What email would you like to send the alert to? ")
 LOGIN = FROMADDR
-PASSWORD = "" #fill in password
 msg = "Door has been opened."
 
 def send_email(TOADDR, LOGIN, PASSWORD, FROMADDR, msg):
     smtpObj = smtplib.SMTP('smtp.gmail.com', 587)
-    #got rid of the debug. It was printing all that stuff.
     smtpObj.ehlo()
     smtpObj.starttls()
     smtpObj.login(LOGIN, PASSWORD)
@@ -47,5 +47,4 @@ while True:
                 time.sleep(10)
                 print "...Checking for open door..."
 
-    
 GPIO.cleanup()
